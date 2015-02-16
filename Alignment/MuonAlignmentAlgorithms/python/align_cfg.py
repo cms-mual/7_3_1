@@ -70,7 +70,8 @@ process.MuonNumberingRecord = cms.ESSource( "EmptyESSource",
 )
 # AR:
                                                               
-process.load("Configuration.StandardSequences.GeometryIdeal_cff")
+process.load("Configuration.StandardSequences.GeometryDB_cff")
+# process.load("Configuration.StandardSequences.GeometryIdeal_cff")
 process.load("Configuration.StandardSequences.MagneticField_cff")
 
 #this is being called from somewhere else?

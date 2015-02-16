@@ -1,4 +1,3 @@
-
 import os
 import FWCore.ParameterSet.Config as cms
 
@@ -137,7 +136,6 @@ process.MessageLogger = cms.Service("MessageLogger",
 
 # AR:
 
-
 process.MuonNumberingInitialization = cms.ESProducer("MuonNumberingInitialization")
 process.MuonNumberingRecord = cms.ESSource( "EmptyESSource",
     recordName = cms.string( "MuonNumberingRecord" ),
@@ -155,7 +153,9 @@ process.MuonNumberingRecord = cms.ESSource( "EmptyESSource",
 # process.TrackerRecoGeometryESProducer = cms.ESProducer( "TrackerRecoGeometryESProducer")
 
 
-process.load("Configuration.StandardSequences.GeometryIdeal_cff")
+process.load("Configuration.StandardSequences.GeometryDB_cff")
+# process.load("Configuration.StandardSequences.GeometryIdeal_cff")
+
 process.load("Configuration.StandardSequences.MagneticField_cff")
 
 process.load("Alignment.MuonAlignmentAlgorithms.MuonAlignmentFromReference_cff")

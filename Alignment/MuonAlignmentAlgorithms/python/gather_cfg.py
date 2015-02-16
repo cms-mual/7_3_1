@@ -155,7 +155,8 @@ process.MuonNumberingRecord = cms.ESSource( "EmptyESSource",
 # process.TrackerRecoGeometryESProducer = cms.ESProducer( "TrackerRecoGeometryESProducer")
 
 
-process.load("Configuration.StandardSequences.GeometryIdeal_cff")
+process.load("Configuration.StandardSequences.GeometryDB_cff")
+# process.load("Configuration.StandardSequences.GeometryIdeal_cff")
 process.load("Configuration.StandardSequences.MagneticField_cff")
 
 process.load("Alignment.MuonAlignmentAlgorithms.MuonAlignmentFromReference_cff")
