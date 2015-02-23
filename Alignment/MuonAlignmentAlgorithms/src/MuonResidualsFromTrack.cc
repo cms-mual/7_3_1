@@ -135,6 +135,10 @@ MuonResidualsFromTrack::MuonResidualsFromTrack(const edm::EventSetup& iSetup,
         }
 // YP I add false here. No trajectory measurments in Muon system if we corrected TrackTransformer accordingly
       } else if ( false && trajMeasurementHitId.det() == DetId::Muon ) {
+
+	      //AR: I removed the false criteria for cosmic tests
+      // } else if (trajMeasurementHitId.det() == DetId::Muon ) {
+
         std::cout << "      TrajectoryMeasurement hit Det: Muon" << std::endl;
         
         if ( trajMeasurementHitId.subdetId() == MuonSubdetId::DT ) {
@@ -161,10 +165,12 @@ MuonResidualsFromTrack::MuonResidualsFromTrack(const edm::EventSetup& iSetup,
 
           
           // have we seen this chamber before?
-	        if (m_dt13.find(chamberId) == m_dt13.end()  &&  m_dt2.find(chamberId) == m_dt2.end()) {
-	          m_chamberIds.push_back(chamberId);
-	          //addTrkCovMatrix(chamberId, tsos); // only for the 1st hit
-	        }
+	  if (m_dt13.find(chamberId) == m_dt13.end()  &&  m_dt2.find(chamberId) == m_dt2.end()) {
+	    std::cout << "AR: pushing back chamber: " << chamberId << std::endl;
+	    m_chamberIds.push_back(chamberId);
+	    //addTrkCovMatrix(chamberId, tsos); // only for the 1st hit
+	  }
+	  std::cout << "AR: size of chamberId: " << m_chamberIds.size() << std::endl;
           
           std::cout << "        TrajectoryMeasurement hit dimension: " << trajMeasurementHitDim << std::endl;
           if ( trajMeasurementHitDim > 1 ) {
@@ -263,9 +269,12 @@ MuonResidualsFromTrack::MuonResidualsFromTrack(const edm::EventSetup& iSetup,
           }
         } else {
           std::cout << "        TrajectoryMeasurement hit subDet: UNKNOWN" << std::endl;
+	  std::cout << "AR: trajMeasurementHitId.det(): " << trajMeasurementHitId.subdetId() << std::endl;
         }
       } else {
         std::cout << "      TrajectoryMeasurement hit det: UNKNOWN" << std::endl;
+	std::cout << "AR: trajMeasurementHitId.det(): " << trajMeasurementHitId.det() << std::endl;
+	std::cout << "DetId::Tracker: " << DetId::Tracker << std::endl;
       }
     }
   }    

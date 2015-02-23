@@ -14,6 +14,9 @@ MuonAlignmentFromReference = cms.PSet(
     minTrackP = cms.double(0.),
     maxTrackP = cms.double(1000.),
     maxDxy = cms.double(1000.),
+    #AR cosmics test:
+    # minTrackerHits = cms.int32(5),
+    # maxTrackerRedChi2 = cms.double(1000.),
     minTrackerHits = cms.int32(10),
     maxTrackerRedChi2 = cms.double(10.),
     allowTIDTEC = cms.bool(True),

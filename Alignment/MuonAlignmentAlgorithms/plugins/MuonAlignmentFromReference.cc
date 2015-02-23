@@ -507,9 +507,12 @@ void MuonAlignmentFromReference::run(const edm::EventSetup& iSetup, const EventI
 
 void MuonAlignmentFromReference::processMuonResidualsFromTrack(MuonResidualsFromTrack &mrft)
 {
+  // std::cout << "minTrackerHits: " << mrft.trackerNumHits() << std::endl;
   if (mrft.trackerNumHits() >= m_minTrackerHits)
   {
     m_counter_trackerhits++;
+    // std::cout << "mrft.normalizedChi2(): " << mrft.normalizedChi2() << std::endl;
+
     if (mrft.normalizedChi2() < m_maxTrackerRedChi2)
     {
       m_counter_trackerchi2++;

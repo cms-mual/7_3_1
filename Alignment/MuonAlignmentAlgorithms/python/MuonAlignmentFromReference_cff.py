@@ -23,7 +23,9 @@ MuonAlignmentFromReferenceGlobalMuonRefit.TrackTransformer.RefitRPCHits = cms.bo
 ### Track refitter for global cosmic muons
 from TrackingTools.TrackRefitter.globalCosmicMuonTrajectories_cff import *
 MuonAlignmentFromReferenceGlobalCosmicRefit = globalCosmicMuons.clone()
-MuonAlignmentFromReferenceGlobalCosmicRefit.Tracks = cms.InputTag("ALCARECOMuAlGlobalCosmics:GlobalMuon")
+MuonAlignmentFromReferenceGlobalCosmicRefit.Tracks = cms.InputTag("globalCosmicMuons")
+# MuonAlignmentFromReferenceGlobalCosmicRefit.Tracks = cms.InputTag("ALCARECOMuAlGlobalCosmics:GlobalMuon")
+# MuonAlignmentFromReferenceGlobalCosmicRefit.Tracks = cms.InputTag("ALCARECOMuAlGlobalCosmics:GlobalCosmicMuon")
 MuonAlignmentFromReferenceGlobalCosmicRefit.TrackTransformer.RefitRPCHits = cms.bool(False)
 
 ### for Tracker muon re-reco
@@ -38,7 +40,8 @@ newmuons = muons.clone(
 
 ### AlignmentProducer with basic options for muon alignment
 from Alignment.CommonAlignmentProducer.AlignmentProducer_cff import *
-looper.tjTkAssociationMapTag = cms.InputTag("MuonAlignmentFromReferenceGlobalMuonRefit:Refitted")
+looper.tjTkAssociationMapTag = cms.InputTag("MuonAlignmentFromReferenceGlobalCosmicRefit:Refitted")
+# looper.tjTkAssociationMapTag = cms.InputTag("MuonAlignmentFromReferenceGlobalMuonRefit:Refitted")
 looper.checkDbAlignmentValidity = cms.untracked.bool(False)
 looper.doTracker = cms.untracked.bool(False)
 looper.doMuon = cms.untracked.bool(True)
