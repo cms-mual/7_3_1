@@ -1,3 +1,4 @@
+
 import os
 import FWCore.ParameterSet.Config as cms
 
@@ -136,6 +137,7 @@ process.MessageLogger = cms.Service("MessageLogger",
 
 # AR:
 
+
 process.MuonNumberingInitialization = cms.ESProducer("MuonNumberingInitialization")
 process.MuonNumberingRecord = cms.ESSource( "EmptyESSource",
     recordName = cms.string( "MuonNumberingRecord" ),
@@ -155,7 +157,6 @@ process.MuonNumberingRecord = cms.ESSource( "EmptyESSource",
 
 process.load("Configuration.StandardSequences.GeometryDB_cff")
 # process.load("Configuration.StandardSequences.GeometryIdeal_cff")
-
 process.load("Configuration.StandardSequences.MagneticField_cff")
 
 process.load("Alignment.MuonAlignmentAlgorithms.MuonAlignmentFromReference_cff")
@@ -257,7 +258,23 @@ process.MuonAlignmentPreFilter.minTrackerHits = minTrackerHits
 process.MuonAlignmentPreFilter.allowTIDTEC = allowTIDTEC
 
 if iscosmics:
-    process.MuonAlignmentPreFilter.tracksTag = cms.InputTag("ALCARECOMuAlGlobalCosmics:GlobalMuon")
+    # process.MuonAlignmentPreFilter.tracksTag = cms.InputTag("ALCARECOMuAlGlobalCosmics:GlobalMuon")
+
+    # cosmic test
+
+    process.MuonAlignmentPreFilter.tracksTag = cms.InputTag("globalCosmicMuons")
+    process.MuonAlignmentFromReferenceGlobalCosmicRefit.Tracks = cms.InputTag("globalCosmicMuons")
+
+    # process.MuonAlignmentPreFilter.tracksTag = cms.InputTag("cosmicMuons")
+    # process.MuonAlignmentFromReferenceGlobalCosmicRefit.Tracks = cms.InputTag("cosmicMuons")
+
+    # process.MuonAlignmentPreFilter.tracksTag = cms.InputTag("ctfWithMaterialTracksP5")
+    # process.MuonAlignmentFromReferenceGlobalCosmicRefit.Tracks = cms.InputTag("ctfWithMaterialTracksP5")
+
+    # process.MuonAlignmentPreFilter.tracksTag = cms.InputTag("standAloneMuons")
+    # process.MuonAlignmentFromReferenceGlobalCosmicRefit.Tracks = cms.InputTag("standAloneMuons")
+
+    # process.MuonAlignmentPreFilter.tracksTag = cms.InputTag("recoMuons")
     if preFilter: process.Path = cms.Path(process.offlineBeamSpot * process.MuonAlignmentPreFilter * process.MuonAlignmentFromReferenceGlobalCosmicRefit)
     else: process.Path = cms.Path(process.offlineBeamSpot * process.MuonAlignmentFromReferenceGlobalCosmicRefit)
     process.looper.tjTkAssociationMapTag = cms.InputTag("MuonAlignmentFromReferenceGlobalCosmicRefit:Refitted")
@@ -265,6 +282,15 @@ else:
     # process.MuonAlignmentPreFilter.tracksTag = cms.InputTag("ALCARECOMuAlCalIsolatedMu:GlobalMuon")
     process.MuonAlignmentPreFilter.tracksTag = cms.InputTag("globalMuons")
     process.MuonAlignmentFromReferenceGlobalMuonRefit.Tracks = cms.InputTag("globalMuons")
+
+    #cosmic test
+    # process.MuonAlignmentPreFilter.tracksTag = cms.InputTag("globalCosmicMuons")
+    # process.MuonAlignmentFromReferenceGlobalMuonRefit.Tracks = cms.InputTag("globalCosmicMuons")
+
+    # process.MuonAlignmentPreFilter.tracksTag = cms.InputTag("ctfWithMaterialTracksP5")
+    # process.MuonAlignmentFromReferenceGlobalMuonRefit.Tracks = cms.InputTag("ctfWithMaterialTracksP5")
+
+
     if preFilter: process.Path = cms.Path(process.offlineBeamSpot * process.MuonAlignmentPreFilter * process.MuonAlignmentFromReferenceGlobalMuonRefit)
     else: process.Path = cms.Path(process.offlineBeamSpot * process.MuonAlignmentFromReferenceGlobalMuonRefit)
     process.looper.tjTkAssociationMapTag = cms.InputTag("MuonAlignmentFromReferenceGlobalMuonRefit:Refitted")
@@ -352,3 +378,5 @@ process.looper.saveApeToDB = False
 del process.PoolDBOutputService
 
 process.TFileService = cms.Service("TFileService", fileName = cms.string("plotting%03d.root" % jobnumber))
+
+#  LocalWords:  InputTag cosmicMuons
