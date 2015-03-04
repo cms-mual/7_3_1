@@ -480,7 +480,9 @@ export ALIGNMENT_USERESIDUALS=%(useResiduals)s
 
 cp -f %(directory)salign_cfg.py %(inputdbdir)s%(inputdb)s %(directory)s*.tmp  %(copytrackerdb)s $ALIGNMENT_CAFDIR/
 
-export ALIGNMENT_PLOTTINGTMP=`ls %(directory)splotting0*.root 2> /dev/null`
+#export ALIGNMENT_PLOTTINGTMP=`ls %(directory)splotting0*.root 2> /dev/null`
+#test fix for 0 size files:
+export ALIGNMENT_PLOTTINGTMP=`find %(directory)splotting0*.root -maxdepth 1 -size +0 -print 2> /dev/null` 
 
 # if it's 1st or last iteration, combine _plotting.root files into one:
 if [ \"$ALIGNMENT_ITERATION\" != \"111\" ] || [ \"$ALIGNMENT_ITERATION\" == \"%(ITERATIONS)s\" ]; then
@@ -496,7 +498,10 @@ if [ \"$ALIGNMENT_CLEANUP\" == \"True\" ] && [ \"zzz$ALIGNMENT_PLOTTINGTMP\" != 
 fi
 
 cd $ALIGNMENT_CAFDIR/
-export ALIGNMENT_ALIGNMENTTMP=`ls alignment*.tmp 2> /dev/null`
+
+#export ALIGNMENT_ALIGNMENTTMP=`ls alignment*.tmp 2> /dev/null`
+#test fix for 0 size files:
+export ALIGNMENT_ALIGNMENTTMP=`find alignment*.tmp -maxdepth 1 -size +0 -print 2> /dev/null`
 ls -l
 
 cmsRun align_cfg.py
@@ -507,7 +512,10 @@ cp -f MuonAlignmentFromReference_plotting.root $ALIGNMENT_AFSDIR/%(directory)s%(
 cd $ALIGNMENT_AFSDIR
 ./Alignment/MuonAlignmentAlgorithms/scripts/convertSQLiteXML.py %(directory)s%(director)s.db %(directory)s%(director)s.xml --noLayers --gprcdconnect $ALIGNMENT_GPRCDCONNECT --gprcd $ALIGNMENT_GPRCD
 
-export ALIGNMENT_ALIGNMENTTMP=`ls %(directory)salignment*.tmp 2> /dev/null`
+#export ALIGNMENT_ALIGNMENTTMP=`ls %(directory)salignment*.tmp 2> /dev/null`
+#test fix for 0 size files:
+export ALIGNMENT_ALIGNMENTTMP=`find %(directory)salignment*.tmp -maxdepth 1 -size +0 -print 2> /dev/null` 
+
 if [ \"$ALIGNMENT_CLEANUP\" == \"True\" ] && [ \"zzz$ALIGNMENT_ALIGNMENTTMP\" != \"zzz\" ]; then
   rm $ALIGNMENT_ALIGNMENTTMP
   echo " "
