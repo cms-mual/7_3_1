@@ -102,7 +102,6 @@ MuonAlignmentOutputXML::~MuonAlignmentOutputXML()
 
 void MuonAlignmentOutputXML::write(AlignableMuon *alignableMuon, const edm::EventSetup &iSetup) const {
 
-  std::cout << "** AR ** MuonAlignmentOutputXML.cc, write. outfile: " << m_fileName.c_str() << std::endl;
 
    std::ofstream outputFile(m_fileName.c_str());
    outputFile << std::setprecision(m_precision) << std::fixed;
@@ -156,14 +155,12 @@ void MuonAlignmentOutputXML::write(AlignableMuon *alignableMuon, const edm::Even
    }
 
    outputFile << "</MuonAlignment>" << std::endl;
-  // std::cout << "** AR ** MuonAlignmentOutputXML.cc, write ended: "  << std::endl;
 
 }
 
 void MuonAlignmentOutputXML::writeComponents(align::Alignables &alignables, align::Alignables &ideals,
 					     std::map<align::ID, CLHEP::HepSymMatrix>& errors, std::ofstream &outputFile, bool DT) const {
 
-  // std::cout << "** AR ** MuonAlignmentOutputXML.cc, writeComponents. outfile: " << m_fileName.c_str() << std::endl;
 
 
    align::Alignables::const_iterator ideal = ideals.begin();

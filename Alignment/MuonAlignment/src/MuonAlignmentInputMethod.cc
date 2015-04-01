@@ -59,7 +59,6 @@ MuonAlignmentInputMethod::~MuonAlignmentInputMethod() {}
 //
 
 AlignableMuon *MuonAlignmentInputMethod::newAlignableMuon(const edm::EventSetup& iSetup) const {
-  std::cout << "**AR** MuonAlignmentInputMethod.cc, newAlignableMuon" << std::endl;
 
    boost::shared_ptr<DTGeometry> dtGeometry = idealDTGeometry(iSetup);
    boost::shared_ptr<CSCGeometry> cscGeometry = idealCSCGeometry(iSetup);
@@ -69,7 +68,6 @@ AlignableMuon *MuonAlignmentInputMethod::newAlignableMuon(const edm::EventSetup&
 
 boost::shared_ptr<DTGeometry> MuonAlignmentInputMethod::idealDTGeometry(const edm::EventSetup& iSetup) const {
 
-  std::cout << "**AR** MuonAlignmentInputMethod.cc, idealDTGeometry" << std::endl;
    edm::ESTransientHandle<DDCompactView> cpv;
    iSetup.get<IdealGeometryRecord>().get(cpv);
 
@@ -85,7 +83,6 @@ boost::shared_ptr<DTGeometry> MuonAlignmentInputMethod::idealDTGeometry(const ed
 
 boost::shared_ptr<CSCGeometry> MuonAlignmentInputMethod::idealCSCGeometry(const edm::EventSetup& iSetup) const {
 
-  std::cout << "**AR** MuonAlignmentInputMethod.cc, idealCSCGeometry" << std::endl;
    edm::ESTransientHandle<DDCompactView> cpv;
    iSetup.get<IdealGeometryRecord>().get(cpv);
 
