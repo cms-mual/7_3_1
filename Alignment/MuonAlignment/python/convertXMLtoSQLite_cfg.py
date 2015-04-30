@@ -6,6 +6,7 @@ process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(1))
 
 # process.load("Configuration.StandardSequences.GeometryDB_cff")
 # process.load("Geometry.CMSCommonData.cmsIdealGeometryXML_cfi")
+
 process.load("Configuration.StandardSequences.GeometryIdeal_cff")
 process.load("Geometry.MuonNumbering.muonNumberingInitialization_cfi")
 

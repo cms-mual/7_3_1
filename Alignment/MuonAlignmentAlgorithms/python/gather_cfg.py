@@ -1,4 +1,3 @@
-
 import os
 import FWCore.ParameterSet.Config as cms
 
@@ -261,9 +260,13 @@ if iscosmics:
     # process.MuonAlignmentPreFilter.tracksTag = cms.InputTag("ALCARECOMuAlGlobalCosmics:GlobalMuon")
 
     # cosmic test
+    print "AR: testprint"
+    process.MuonAlignmentPreFilter.tracksTag = cms.InputTag("ALCARECOMuAlGlobalCosmics:GlobalMuon")
+    process.MuonAlignmentFromReferenceGlobalCosmicRefit.Tracks = cms.InputTag("ALCARECOMuAlGlobalCosmics:GlobalMuon")
 
-    process.MuonAlignmentPreFilter.tracksTag = cms.InputTag("globalCosmicMuons")
-    process.MuonAlignmentFromReferenceGlobalCosmicRefit.Tracks = cms.InputTag("globalCosmicMuons")
+
+    # process.MuonAlignmentPreFilter.tracksTag = cms.InputTag("globalCosmicMuons")
+    # process.MuonAlignmentFromReferenceGlobalCosmicRefit.Tracks = cms.InputTag("globalCosmicMuons")
 
     # process.MuonAlignmentPreFilter.tracksTag = cms.InputTag("cosmicMuons")
     # process.MuonAlignmentFromReferenceGlobalCosmicRefit.Tracks = cms.InputTag("cosmicMuons")

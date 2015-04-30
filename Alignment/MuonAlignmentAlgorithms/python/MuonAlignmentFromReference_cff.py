@@ -22,9 +22,12 @@ MuonAlignmentFromReferenceGlobalMuonRefit.TrackTransformer.RefitRPCHits = cms.bo
 
 ### Track refitter for global cosmic muons
 from TrackingTools.TrackRefitter.globalCosmicMuonTrajectories_cff import *
+
+# MuonAlignmentFromReferenceGlobalCosmicRefit = process.globalCosmicMuons.clone()
 MuonAlignmentFromReferenceGlobalCosmicRefit = globalCosmicMuons.clone()
-MuonAlignmentFromReferenceGlobalCosmicRefit.Tracks = cms.InputTag("globalCosmicMuons")
-# MuonAlignmentFromReferenceGlobalCosmicRefit.Tracks = cms.InputTag("ALCARECOMuAlGlobalCosmics:GlobalMuon")
+
+# MuonAlignmentFromReferenceGlobalCosmicRefit.Tracks = cms.InputTag("globalCosmicMuons")
+MuonAlignmentFromReferenceGlobalCosmicRefit.Tracks = cms.InputTag("ALCARECOMuAlGlobalCosmics:GlobalMuon")
 # MuonAlignmentFromReferenceGlobalCosmicRefit.Tracks = cms.InputTag("ALCARECOMuAlGlobalCosmics:GlobalCosmicMuon")
 MuonAlignmentFromReferenceGlobalCosmicRefit.TrackTransformer.RefitRPCHits = cms.bool(False)
 

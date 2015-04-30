@@ -120,7 +120,8 @@ TrackTransformer::getTransientRecHits(const reco::TransientTrack& track) const {
 	  LogTrace("Reco|TrackingTools|TrackTransformer") << "RPC Rec Hit discarged"; 
 	  continue;
 	}
-	result.push_back(theMuonRecHitBuilder->build(&**hit));
+	// AR: Remove the muon hits from the fit
+	// result.push_back(theMuonRecHitBuilder->build(&**hit));
       }
     }
   }
